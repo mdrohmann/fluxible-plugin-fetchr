@@ -1,7 +1,7 @@
 # Fetchr Plugin for Fluxible App
 [![Build Status](https://travis-ci.org/yahoo/fluxible-plugin-fetchr.svg?branch=master)](https://travis-ci.org/yahoo/fluxible-plugin-fetchr) [![Dependency Status](https://david-dm.org/yahoo/fluxible-plugin-fetchr.svg)](https://david-dm.org/yahoo/fluxible-plugin-fetchr) [![Coverage Status](https://coveralls.io/repos/yahoo/fluxible-plugin-fetchr/badge.png?branch=master)](https://coveralls.io/r/yahoo/fluxible-plugin-fetchr?branch=master)
 
-Provides isomorphic RESTful service access to your [Fluxible application](github.com/yahoo/fluxible-app) using [fetchr](github.com/yahoo/fetchr).
+Provides isomorphic RESTful service access to your [Fluxible application](https://github.com/yahoo/fluxible-app) using [fetchr](https://github.com/yahoo/fetchr).
 
 ## Usage
 
