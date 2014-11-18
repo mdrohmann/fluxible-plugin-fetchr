@@ -48,7 +48,7 @@ pluginInstance.getServiceClass(); // returns the fetchr instance used by the plu
 
 ## Registering Your Services
 
-Since the fetchr plugin is in control the fetchr class, we expose this through the `getServiceManager` method.
+Since the fetchr plugin is in control the fetchr class, we expose this through the `registerService` method.
 
 ```js
 pluginInstance.registerService(yourService);
