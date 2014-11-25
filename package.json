@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "debug": "^2.0.0",
-    "fetchr": "^0.4.0"
+    "fetchr": "^0.4.0",
+    "object-assign": "^1.0.0"
   },
   "devDependencies": {
     "chai": "~1.9.1",

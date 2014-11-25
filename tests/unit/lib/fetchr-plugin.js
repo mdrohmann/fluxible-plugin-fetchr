@@ -26,7 +26,10 @@ describe('fetchrPlugin', function () {
         pluginInstance.registerService(mockService);
         app.plug(pluginInstance);
         context = app.createContext({
-            req: mockReq
+            req: mockReq,
+            dimensions: {
+                device: 'tablet'
+            }
         });
     });
 
@@ -116,6 +119,29 @@ describe('fetchrPlugin', function () {
             });
             expect(pluginInstance.dehydrate()).to.deep.equal({
                 xhrPath: 'custom2/api'
+            });
+        });
+    });
+
+    describe('context level', function () {
+        var actionContext;
+        beforeEach(function () {
+            actionContext = context.getActionContext();
+        });
+        it('should dehydrate / rehydrate context correctly', function () {
+            var contextPlug = pluginInstance.plugContext({ dimensions: { device: 'tablet' }});
+            contextPlug.plugActionContext(actionContext);
+
+            contextPlug.rehydrate({
+                dimensions: {
+                    device: 'tablet'
+                }
+            });
+
+            expect(contextPlug.dehydrate()).to.eql({
+                dimensions: {
+                    device: 'tablet'
+                }
             });
         });
     });
