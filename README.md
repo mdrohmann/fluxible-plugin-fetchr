@@ -1,6 +1,10 @@
 # Fetchr Plugin for Fluxible App
 
-[![npm version](https://badge.fury.io/js/fluxible-plugin-fetchr.svg)](http://badge.fury.io/js/fluxible-plugin-fetchr) [![Build Status](https://travis-ci.org/yahoo/fluxible-plugin-fetchr.svg?branch=master)](https://travis-ci.org/yahoo/fluxible-plugin-fetchr) [![Dependency Status](https://david-dm.org/yahoo/fluxible-plugin-fetchr.svg)](https://david-dm.org/yahoo/fluxible-plugin-fetchr) [![Coverage Status](https://coveralls.io/repos/yahoo/fluxible-plugin-fetchr/badge.png?branch=master)](https://coveralls.io/r/yahoo/fluxible-plugin-fetchr?branch=master)
+[![npm version](https://badge.fury.io/js/fluxible-plugin-fetchr.svg)](http://badge.fury.io/js/fluxible-plugin-fetchr)
+[![Build Status](https://travis-ci.org/yahoo/fluxible-plugin-fetchr.svg?branch=master)](https://travis-ci.org/yahoo/fluxible-plugin-fetchr)
+[![Dependency Status](https://david-dm.org/yahoo/fluxible-plugin-fetchr.svg)](https://david-dm.org/yahoo/fluxible-plugin-fetchr)
+[![devDependency Status](https://david-dm.org/yahoo/fluxible-plugin-fetchr/dev-status.svg)](https://david-dm.org/yahoo/fluxible-plugin-fetchr#info=devDependencies)
+[![Coverage Status](https://coveralls.io/repos/yahoo/fluxible-plugin-fetchr/badge.png?branch=master)](https://coveralls.io/r/yahoo/fluxible-plugin-fetchr?branch=master)
 
 Provides isomorphic RESTful service access to your [Fluxible application](https://github.com/yahoo/fluxible-app) using [fetchr](https://github.com/yahoo/fetchr).
 
