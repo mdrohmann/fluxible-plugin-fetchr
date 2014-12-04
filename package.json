@@ -1,6 +1,6 @@
 {
   "name": "fluxible-plugin-fetchr",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A plugin for fluxible applications to provide an isomorphic interface for RESTful services",
   "main": "index.js",
   "scripts": {
