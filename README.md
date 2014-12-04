@@ -16,7 +16,11 @@ var fetchrPlugin = require('fluxible-plugin-fetchr');
 var app = new FluxApplication();
 
 app.plug(fetchrPlugin({
-    xhrPath: '/api' // Path for XHR to be served from
+    xhrPath: '/api' // Path for XHR to be served from,
+    xhrContext: { // Used as query params for all XHR calls
+        lang: 'en-US', // make sure XHR calls receive the same lang as the initial request
+        _csrf: 'a3fc2d' // CSRF token to validate on the server using your favorite library
+    }
 }));
 ```
 
