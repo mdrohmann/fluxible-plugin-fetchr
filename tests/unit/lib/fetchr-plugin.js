@@ -27,7 +27,7 @@ describe('fetchrPlugin', function () {
         app.plug(pluginInstance);
         context = app.createContext({
             req: mockReq,
-            dimensions: {
+            xhrContext: {
                 device: 'tablet'
             }
         });
@@ -129,17 +129,17 @@ describe('fetchrPlugin', function () {
             actionContext = context.getActionContext();
         });
         it('should dehydrate / rehydrate context correctly', function () {
-            var contextPlug = pluginInstance.plugContext({ dimensions: { device: 'tablet' }});
+            var contextPlug = pluginInstance.plugContext({ xhrContext: { device: 'tablet' }});
             contextPlug.plugActionContext(actionContext);
 
             contextPlug.rehydrate({
-                dimensions: {
+                xhrContext: {
                     device: 'tablet'
                 }
             });
 
             expect(contextPlug.dehydrate()).to.eql({
-                dimensions: {
+                xhrContext: {
                     device: 'tablet'
                 }
             });
