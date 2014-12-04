@@ -20,11 +20,15 @@ app.plug(fetchrPlugin({
 }));
 ```
 
-Now, when calling the `createContext` method on the server, make sure to send in the request object:
+Now, when calling the `createContext` method on the server, make sure to send in the request object and optionally pass an `xhrContext` which will be used as parameters for all XHR calls:
 
 ```
 app.createContext({
-    req: req
+    req: req,
+    xhrContext: { // Used as query params for all XHR calls
+        lang: 'en-US', // make sure XHR calls receive the same lang as the initial request
+        _csrf: 'a3fc2d' // CSRF token to validate on the server using your favorite library
+    }
 });
 ```
 
