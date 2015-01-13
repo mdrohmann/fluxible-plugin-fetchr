@@ -8,7 +8,7 @@
 var path = require('path');
 var expect = require('chai').expect;
 var fetchrPlugin = require('../../../lib/fetchr-plugin');
-var FluxibleApp = require('fluxible-app');
+var FluxibleApp = require('fluxible');
 var mockService = require('../../fixtures/services/test');
 
 describe('fetchrPlugin', function () {

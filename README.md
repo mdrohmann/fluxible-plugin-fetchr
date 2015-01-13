@@ -1,4 +1,4 @@
-# Fetchr Plugin for Fluxible App
+# Fetchr Plugin for Fluxible
 
 [![npm version](https://badge.fury.io/js/fluxible-plugin-fetchr.svg)](http://badge.fury.io/js/fluxible-plugin-fetchr)
 [![Build Status](https://travis-ci.org/yahoo/fluxible-plugin-fetchr.svg?branch=master)](https://travis-ci.org/yahoo/fluxible-plugin-fetchr)
@@ -6,14 +6,14 @@
 [![devDependency Status](https://david-dm.org/yahoo/fluxible-plugin-fetchr/dev-status.svg)](https://david-dm.org/yahoo/fluxible-plugin-fetchr#info=devDependencies)
 [![Coverage Status](https://coveralls.io/repos/yahoo/fluxible-plugin-fetchr/badge.png?branch=master)](https://coveralls.io/r/yahoo/fluxible-plugin-fetchr?branch=master)
 
-Provides isomorphic RESTful service access to your [Fluxible application](https://github.com/yahoo/fluxible-app) using [fetchr](https://github.com/yahoo/fetchr).
+Provides isomorphic RESTful service access to your [Fluxible](https://github.com/yahoo/fluxible) application using [fetchr](https://github.com/yahoo/fetchr).
 
 ## Usage
 
 ```js
-var FluxibleApp = require('fluxible-app');
+var Fluxible = require('fluxible');
 var fetchrPlugin = require('fluxible-plugin-fetchr');
-var app = new FluxApplication();
+var app = new Fluxible();
 
 app.plug(fetchrPlugin({
     xhrPath: '/api' // Path for XHR to be served from
