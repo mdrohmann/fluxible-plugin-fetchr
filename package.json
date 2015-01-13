@@ -3,6 +3,10 @@
   "version": "0.2.1",
   "description": "A plugin for fluxible applications to provide an isomorphic interface for RESTful services",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yahoo/fluxible-plugin-fetchr.git"
+  },
   "scripts": {
     "test": "mocha tests/unit/ --recursive --reporter spec",
     "cover": "istanbul cover --dir artifacts -- ./node_modules/mocha/bin/_mocha tests/unit/ --recursive --reporter spec",
