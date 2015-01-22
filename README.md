@@ -32,6 +32,19 @@ app.createContext({
 });
 ```
 
+### Dynamic XHR Paths
+
+The `fetchrPlugin` method can also be passed a `getXhrPath` function that returns the string for the `xhrPath`. This allows you to dynamically set the `xhrPath` based on the current context. For instance, if you're hosting multiple sites and want to serve XHR via a pattern route like `/:site/api`, you can do the following:
+
+```js
+app.plug(fetchrPlugin({
+    getXhrPath: function (contextOptions) {
+        // `contextOptions` is the object passed to `createContext` above
+        return contextOptions.req.params.site + '/api';
+    }
+}));
+```
+
 ## Fluxible Methods Added
 
 ### actionContext

@@ -5,7 +5,6 @@
 /*globals describe,it,beforeEach */
 "use strict";
 
-var path = require('path');
 var expect = require('chai').expect;
 var fetchrPlugin = require('../../../lib/fetchr-plugin');
 var FluxibleApp = require('fluxible');
@@ -15,7 +14,8 @@ describe('fetchrPlugin', function () {
     var app,
         pluginInstance,
         context,
-        mockReq;
+        mockReq,
+        xhrContext;
 
     beforeEach(function () {
         mockReq = {};
@@ -25,11 +25,12 @@ describe('fetchrPlugin', function () {
         });
         pluginInstance.registerService(mockService);
         app.plug(pluginInstance);
+        xhrContext = {
+            device: 'tablet'
+        };
         context = app.createContext({
             req: mockReq,
-            xhrContext: {
-                device: 'tablet'
-            }
+            xhrContext: xhrContext
         });
     });
 
@@ -104,25 +105,6 @@ describe('fetchrPlugin', function () {
         });
     });
 
-    describe('dehydrate', function () {
-        it('should dehydrate its state correctly', function () {
-            expect(pluginInstance.dehydrate()).to.deep.equal({
-                xhrPath: 'custom/api'
-            });
-        });
-    });
-
-    describe('rehydrate', function () {
-        it('should rehydrate the state correctly', function () {
-            pluginInstance.rehydrate({
-                xhrPath: 'custom2/api'
-            });
-            expect(pluginInstance.dehydrate()).to.deep.equal({
-                xhrPath: 'custom2/api'
-            });
-        });
-    });
-
     describe('context level', function () {
         var actionContext;
         beforeEach(function () {
@@ -130,19 +112,41 @@ describe('fetchrPlugin', function () {
         });
         it('should dehydrate / rehydrate context correctly', function () {
             var contextPlug = pluginInstance.plugContext({ xhrContext: { device: 'tablet' }});
-            contextPlug.plugActionContext(actionContext);
-
             contextPlug.rehydrate({
                 xhrContext: {
                     device: 'tablet'
-                }
+                },
+                xhrPath: 'custom2/api'
             });
+            contextPlug.plugActionContext(actionContext);
 
-            expect(contextPlug.dehydrate()).to.eql({
+            expect(contextPlug.dehydrate()).to.deep.equal({
                 xhrContext: {
                     device: 'tablet'
-                }
+                },
+                xhrPath: 'custom2/api'
             });
+        });
+    });
+
+    describe('plugContext', function () {
+        it('should allow dynamic xhrPath', function () {
+            mockReq = {
+                site: 'foo'
+            };
+            app = new FluxibleApp();
+            pluginInstance = fetchrPlugin({
+                getXhrPath: function (contextOptions) {
+                    return contextOptions.req.site + '/api';
+                },
+                xhrPath: 'custom/api'
+            });
+            var contextPlug = pluginInstance.plugContext({
+                req: mockReq,
+                xhrContext: { device: 'tablet' }
+            });
+
+            expect(contextPlug.dehydrate().xhrPath).to.equal('foo/api');
         });
     });
 
