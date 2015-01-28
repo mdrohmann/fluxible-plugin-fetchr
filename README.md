@@ -32,6 +32,29 @@ app.createContext({
 });
 ```
 
+### Registering Your Services
+
+Since the fetchr plugin is in control the `fetchr` class, we expose this through the `registerService` method.
+
+```js
+pluginInstance.registerService(yourService);
+```
+
+Or if you need to do this from your application without direct access to the plugin
+
+```js
+app.getPlugin('FetchrPlugin').registerService(yourService);
+```
+
+### Exposing Your Services
+
+Fetchr also contains an express/connect middleware that can be used as your access point from the client.
+
+```js
+var server = express();
+server.use(pluginInstance.getXhrPath(), pluginInstance.getMiddleware());
+```
+
 ### Dynamic XHR Paths
 
 The `fetchrPlugin` method can also be passed a `getXhrPath` function that returns the string for the `xhrPath`. This allows you to dynamically set the `xhrPath` based on the current context. For instance, if you're hosting multiple sites and want to serve XHR via a pattern route like `/:site/api`, you can do the following:
@@ -45,19 +68,21 @@ app.plug(fetchrPlugin({
 }));
 ```
 
-## Fluxible Methods Added
+[//]: # (API_START)
+## Fetchr Plugin API
 
-### actionContext
+### Constructor(options)
 
- * `actionContext.service.read(resource, params, [config,] callback)`: Call the read method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
- * `actionContext.service.create(resource, params, body, [config,] callback)`: Call the create method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
- * `actionContext.service.update(resource, params, body, [config,] callback)`: Call the update method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
- * `actionContext.service.delete(resource, params, [config,] callback)`: Call the delete method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
- * `actionContext.getServiceMeta()`: The plugin will collect metadata for service responses and provide access to it via this method. This will return an array of metadata objects.
+Creates a new `fetchr` plugin instance with the following parameters:
 
-## Other Methods
+ * `options`: An object containing the plugin settings
+ * `options.xhrPath` (optional): Stores your xhr path prefix used by client side requests. DEFAULT: '/api'
 
-The plugin also provides access to some internals and the options that were passed in.
+### Instance Methods
+
+#### getXhrPath
+
+getter for the `xhrPath` option passed into the constructor.
 
 ```
 var pluginInstance = fetchrPlugin({
@@ -65,31 +90,24 @@ var pluginInstance = fetchrPlugin({
 });
 
 pluginInstance.getXhrPath(); // returns '/api'
-pluginInstance.getServiceClass(); // returns the fetchr instance used by the plugin
 ```
 
-## Registering Your Services
+#### registerService(service)
 
-Since the fetchr plugin is in control the fetchr class, we expose this through the `registerService` method.
+[register a service](#Registering Your Services) with fetchr
 
-```js
-pluginInstance.registerService(yourService);
-```
+#### getMiddleware
 
-Or if you need to do this from your application without direct access to the plugin
+getter for fetchr's express/connect middleware. See [usage](#Exposing Your Services)
 
-```js
-app.getPlugin('FetchrPlugin').registerService(yourService);
-```
+### actionContext Methods
 
-## Exposing Your Services
-
-Fetchr also contains an express/connect middleware that can be used as your access point from the client.
-
-```js
-var server = express();
-server.use(pluginInstance.getXhrPath(), pluginInstance.getMiddleware());
-```
+ * `actionContext.service.read(resource, params, [config,] callback)`: Call the read method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
+ * `actionContext.service.create(resource, params, body, [config,] callback)`: Call the create method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
+ * `actionContext.service.update(resource, params, body, [config,] callback)`: Call the update method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
+ * `actionContext.service.delete(resource, params, [config,] callback)`: Call the delete method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
+ * `actionContext.getServiceMeta()`: The plugin will collect metadata for service responses and provide access to it via this method. This will return an array of metadata objects.
+[//]: # (API_STOP)
 
 ## License
 
