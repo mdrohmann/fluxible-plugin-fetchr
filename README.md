@@ -68,46 +68,10 @@ app.plug(fetchrPlugin({
 }));
 ```
 
-[//]: # (API_START)
-## Fetchr Plugin API
 
-### Constructor(options)
+## API
 
-Creates a new `fetchr` plugin instance with the following parameters:
-
- * `options`: An object containing the plugin settings
- * `options.xhrPath` (optional): Stores your xhr path prefix used by client side requests. DEFAULT: '/api'
-
-### Instance Methods
-
-#### getXhrPath
-
-getter for the `xhrPath` option passed into the constructor.
-
-```
-var pluginInstance = fetchrPlugin({
-    xhrPath: '/api'
-});
-
-pluginInstance.getXhrPath(); // returns '/api'
-```
-
-#### registerService(service)
-
-[register a service](#Registering Your Services) with fetchr
-
-#### getMiddleware
-
-getter for fetchr's express/connect middleware. See [usage](#Exposing Your Services)
-
-### actionContext Methods
-
- * `actionContext.service.read(resource, params, [config,] callback)`: Call the read method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
- * `actionContext.service.create(resource, params, body, [config,] callback)`: Call the create method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
- * `actionContext.service.update(resource, params, body, [config,] callback)`: Call the update method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
- * `actionContext.service.delete(resource, params, [config,] callback)`: Call the delete method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
- * `actionContext.getServiceMeta()`: The plugin will collect metadata for service responses and provide access to it via this method. This will return an array of metadata objects.
-[//]: # (API_STOP)
+- [fluxible-plugin-fetchr](https://github.com/yahoo/fluxible-plugin-fetchr/blob/master/docs/fluxible-plugin-fetchr.md)
 
 ## License
 
