@@ -23,11 +23,11 @@ pluginInstance.getXhrPath(); // returns '/api'
 
 ### registerService(service)
 
-[register a service](#Registering Your Services) with fetchr
+[register a service](#Registering Your Services) with fetchr.  For server side only.
 
 ### getMiddleware
 
-getter for fetchr's express/connect middleware. See [usage](#Exposing Your Services)
+getter for fetchr's express/connect middleware.  For server side only.  See [usage](#Exposing Your Services)
 
 ## actionContext Methods
 

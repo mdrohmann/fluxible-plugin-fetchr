@@ -34,7 +34,7 @@ app.createContext({
 
 ### Registering Your Services
 
-Since the fetchr plugin is in control the `fetchr` class, we expose this through the `registerService` method.
+*Registering fetchr services is done on the server side*.  Since the fetchr plugin is in control of the `fetchr` class, we expose this through the `registerService` method.
 
 ```js
 pluginInstance.registerService(yourService);
@@ -46,6 +46,9 @@ Or if you need to do this from your application without direct access to the plu
 app.getPlugin('FetchrPlugin').registerService(yourService);
 ```
 
+For real examples, you can check out [the `server.js` file in our chat example](https://github.com/yahoo/flux-examples/blob/master/chat/server.js).
+
+
 ### Exposing Your Services
 
 Fetchr also contains an express/connect middleware that can be used as your access point from the client.
@@ -54,6 +57,9 @@ Fetchr also contains an express/connect middleware that can be used as your acce
 var server = express();
 server.use(pluginInstance.getXhrPath(), pluginInstance.getMiddleware());
 ```
+
+For real examples, you can check out [the `server.js` file in our chat example](https://github.com/yahoo/flux-examples/blob/master/chat/server.js).
+
 
 ### Dynamic XHR Paths
 
