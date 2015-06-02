@@ -137,12 +137,12 @@ describe('fetchrPlugin', function () {
             });
             contextPlug.plugActionContext(actionContext);
 
-            expect(actionContext.serviceConstructGetXhrUri(
+            expect(actionContext.service.constructGetXhrUri(
                 'resourceFoo',
                 {a: 1}
             )).to.equal('custom2/api/resourceFoo;a=1?device=tablet', 'default construct uri function');
 
-            expect(actionContext.serviceConstructGetXhrUri(
+            expect(actionContext.service.constructGetXhrUri(
                 'resourceFoo',
                 {a: 1},
                 {
