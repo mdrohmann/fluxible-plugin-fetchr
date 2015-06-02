@@ -3,7 +3,7 @@
  * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
  */
 /*globals describe,it,beforeEach */
-"use strict";
+'use strict';
 
 var expect = require('chai').expect;
 var fetchrPlugin = require('../../../lib/fetchr-plugin');
@@ -126,6 +126,31 @@ describe('fetchrPlugin', function () {
                 },
                 xhrPath: 'custom2/api'
             });
+        });
+        it('construct get xhr uri', function () {
+            var contextPlug = pluginInstance.plugContext({xhrContext: { device: 'tablet', ver: '0.1.5' }});
+            contextPlug.rehydrate({
+                xhrContext: {
+                    device: 'tablet'
+                },
+                xhrPath: 'custom2/api'
+            });
+            contextPlug.plugActionContext(actionContext);
+
+            expect(actionContext.serviceConstructGetXhrUri(
+                'resourceFoo',
+                {a: 1}
+            )).to.equal('custom2/api/resourceFoo;a=1?device=tablet', 'default construct uri function');
+
+            expect(actionContext.serviceConstructGetXhrUri(
+                'resourceFoo',
+                {a: 1},
+                {
+                    constructGetUri: function () {
+                        return '/customGetUri';
+                    }
+                }
+            )).to.equal('/customGetUri', 'custom custructGetUri function');
         });
     });
 
