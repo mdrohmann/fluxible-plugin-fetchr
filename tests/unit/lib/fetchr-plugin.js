@@ -127,6 +127,31 @@ describe('fetchrPlugin', function () {
                 xhrPath: 'custom2/api'
             });
         });
+        it('construct get xhr uri', function () {
+            var contextPlug = pluginInstance.plugContext({xhrContext: { device: 'tablet', ver: '0.1.5' }});
+            contextPlug.rehydrate({
+                xhrContext: {
+                    device: 'tablet'
+                },
+                xhrPath: 'custom2/api'
+            });
+            contextPlug.plugActionContext(actionContext);
+
+            expect(actionContext.service.constructGetXhrUri(
+                'resourceFoo',
+                {a: 1}
+            )).to.equal('custom2/api/resource/resourceFoo;a=1?device=tablet', 'default construct uri function');
+
+            expect(actionContext.service.constructGetXhrUri(
+                'resourceFoo',
+                {a: 1},
+                {
+                    constructGetUri: function () {
+                        return '/customGetUri';
+                    }
+                }
+            )).to.equal('/customGetUri', 'custom custructGetUri function');
+        });
     });
 
     describe('plugContext', function () {
