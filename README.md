@@ -74,6 +74,23 @@ app.plug(fetchrPlugin({
 }));
 ```
 
+## CORS Support
+
+Fetchr provides [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) support by allowing you to pass the full origin host into `corsPath`.
+
+For example:
+
+```js
+var Fluxible = require('fluxible');
+var fetchrPlugin = require('fluxible-plugin-fetchr');
+var app = new Fluxible();
+
+app.plug(fetchrPlugin({
+    corsPath: 'http://www.foo.com',
+    xhrPath: '/fooProxy'
+}));
+```
+[See Fetchr docs for more info](https://github.com/yahoo/fetchr/blob/master/README.md#cors-support)
 
 ## API
 
