@@ -116,7 +116,8 @@ describe('fetchrPlugin', function () {
                 xhrContext: {
                     device: 'tablet'
                 },
-                xhrPath: 'custom2/api'
+                xhrPath: 'custom2/api',
+                corsPath: null
             });
             contextPlug.plugActionContext(actionContext);
 
@@ -124,33 +125,57 @@ describe('fetchrPlugin', function () {
                 xhrContext: {
                     device: 'tablet'
                 },
-                xhrPath: 'custom2/api'
+                xhrPath: 'custom2/api',
+                corsPath: null
             });
         });
-        it('construct get xhr uri', function () {
-            var contextPlug = pluginInstance.plugContext({xhrContext: { device: 'tablet', ver: '0.1.5' }});
-            contextPlug.rehydrate({
-                xhrContext: {
-                    device: 'tablet'
-                },
-                xhrPath: 'custom2/api'
+
+        describe('with CORS', function () {
+            it('should construct get CORS uri', function () {
+                var contextPlug = pluginInstance.plugContext({xhrContext: { device: 'tablet', ver: '0.1.5' }});
+                contextPlug.rehydrate({
+                    xhrContext: {
+                        device: 'tablet'
+                    },
+                    xhrPath: 'custom2/api',
+                    corsPath: 'http://example.com'
+                });
+                contextPlug.plugActionContext(actionContext);
+
+                expect(actionContext.service.constructGetXhrUri(
+                    'resourceFoo',
+                    {a: 1},
+                    {cors: true}
+                )).to.equal('http://example.com/resourceFoo;a=1?device=tablet', 'default construct uri function');
             });
-            contextPlug.plugActionContext(actionContext);
+        });
 
-            expect(actionContext.service.constructGetXhrUri(
-                'resourceFoo',
-                {a: 1}
-            )).to.equal('custom2/api/resourceFoo;a=1?device=tablet', 'default construct uri function');
+        describe('without CORS', function () {
+            it('construct get xhr uri', function () {
+                var contextPlug = pluginInstance.plugContext({xhrContext: { device: 'tablet', ver: '0.1.5' }});
+                contextPlug.rehydrate({
+                    xhrContext: {
+                        device: 'tablet'
+                    },
+                    xhrPath: 'custom2/api'
+                });
+                contextPlug.plugActionContext(actionContext);
 
-            expect(actionContext.service.constructGetXhrUri(
-                'resourceFoo',
-                {a: 1},
-                {
-                    constructGetUri: function () {
-                        return '/customGetUri';
+                expect(actionContext.service.constructGetXhrUri(
+                    'resourceFoo',
+                    {a: 1}
+                )).to.equal('custom2/api/resourceFoo;a=1?device=tablet', 'default construct uri function');
+
+                expect(actionContext.service.constructGetXhrUri(
+                    'resourceFoo',
+                    {a: 1},
+                    {
+                        constructGetUri: function () {
+                            return '/customGetUri';
+                        }
                     }
-                }
-            )).to.equal('/customGetUri', 'custom custructGetUri function');
+                )).to.equal('/customGetUri', 'custom custructGetUri function');
+            });
         });
     });
 
