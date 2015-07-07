@@ -117,6 +117,7 @@ describe('fetchrPlugin', function () {
                     device: 'tablet'
                 },
                 xhrPath: 'custom2/api',
+                xhrTimeout: 4000,
                 corsPath: null
             });
             contextPlug.plugActionContext(actionContext);
@@ -126,6 +127,7 @@ describe('fetchrPlugin', function () {
                     device: 'tablet'
                 },
                 xhrPath: 'custom2/api',
+                xhrTimeout: 4000,
                 corsPath: null
             });
         });
