@@ -131,6 +131,29 @@ describe('fetchrPlugin', function () {
                 corsPath: null
             });
         });
+        
+        it('should dehydrate / rehydrate context correctly when updating new options', function () {
+            var contextPlug = pluginInstance.plugContext({ xhrContext: { device: 'tablet' }});
+            contextPlug.rehydrate({
+                xhrContext: {
+                    device: 'tablet'
+                },
+                xhrPath: 'custom2/api',
+                xhrTimeout: 4000,
+                corsPath: null
+            });
+            contextPlug.plugActionContext(actionContext);
+            actionContext.service.updateOptions({xhrTimeout: 1000});
+
+            expect(contextPlug.dehydrate()).to.deep.equal({
+                xhrContext: {
+                    device: 'tablet'
+                },
+                xhrPath: 'custom2/api',
+                xhrTimeout: 1000,
+                corsPath: null
+            });
+        });
 
         describe('with CORS', function () {
             it('should construct get CORS uri', function () {

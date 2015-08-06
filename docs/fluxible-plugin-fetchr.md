@@ -36,4 +36,5 @@ getter for fetchr's express/connect middleware.  For server side only.  See [usa
  * `actionContext.service.create(resource, params, body, [config,] callback)`: Call the create method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
  * `actionContext.service.update(resource, params, body, [config,] callback)`: Call the update method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
  * `actionContext.service.delete(resource, params, [config,] callback)`: Call the delete method of a service. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
+ * `actionContext.service.updateOptions(options)`: Update the options of the fetchr instance. See [fetchr docs](https://github.com/yahoo/fetchr) for more information.
  * `actionContext.getServiceMeta()`: The plugin will collect metadata for service responses and provide access to it via this method. This will return an array of metadata objects.
