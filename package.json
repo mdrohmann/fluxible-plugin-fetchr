@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "debug": "^2.0.0",
-    "fetchr": "^0.5.7"
+    "fetchr": "^0.5.14"
   },
   "devDependencies": {
     "chai": "^2.0.0",
