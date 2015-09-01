@@ -92,6 +92,10 @@ app.plug(fetchrPlugin({
 ```
 [See Fetchr docs for more info](https://github.com/yahoo/fetchr/blob/master/README.md#cors-support)
 
+## Using Context Picker
+
+You are able to define how to pick the context values to be a part of query params of xhr calls, [See Fetchr docs for more info](https://github.com/yahoo/fetchr/blob/master/README.md#using-context-picker)
+
 ## API
 
 - [fluxible-plugin-fetchr](https://github.com/yahoo/fluxible-plugin-fetchr/blob/master/docs/fluxible-plugin-fetchr.md)
