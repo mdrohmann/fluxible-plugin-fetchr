@@ -92,9 +92,9 @@ app.plug(fetchrPlugin({
 ```
 [See Fetchr docs for more info](https://github.com/yahoo/fetchr/blob/master/README.md#cors-support)
 
-## Using Context Picker
+## Context Variables
 
-You are able to define how to pick the context values to be a part of query params of xhr calls, [See Fetchr docs for more info](https://github.com/yahoo/fetchr/blob/master/README.md#using-context-picker)
+By Default, fetchr appends all context values to the xhr url as query params. `contextPicker` allows you to greater control over which context variables get sent as query params depending on the xhr method (GET or POST) [See Fetchr docs for more info](https://github.com/yahoo/fetchr/blob/master/README.md#context-variables)
 
 ## API
 
