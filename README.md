@@ -52,9 +52,12 @@ For real examples, you can check out [the `server.js` file in our chat example](
 ### Exposing Your Services
 
 Fetchr also contains an express/connect middleware that can be used as your access point from the client.
+Fetchr middleware expects that you're using the [`body-parser`](https://github.com/expressjs/body-parser) middleware (or an alternative middleware that populates `req.body`) before you use Fetchr middleware.
 
 ```js
 var server = express();
+// you need to use body parser middleware before `FetchrPlugin`
+server.use(bodyParser.json());
 server.use(pluginInstance.getXhrPath(), pluginInstance.getMiddleware());
 ```
 
