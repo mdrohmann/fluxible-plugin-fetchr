@@ -1,6 +1,6 @@
 {
   "name": "fluxible-plugin-fetchr",
-  "version": "0.3.7",
+  "version": "1.0.0",
   "description": "A plugin for Fluxible applications to provide an isomorphic interface for RESTful services",
   "main": "index.js",
   "repository": {
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "debug": "^2.0.0",
-    "fetchr": "^0.5.14"
+    "fetchr": "git@github.com:mdrohmann/fetchr.git"
   },
   "devDependencies": {
     "chai": "^2.0.0",

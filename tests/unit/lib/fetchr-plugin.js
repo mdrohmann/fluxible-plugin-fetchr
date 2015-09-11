@@ -89,7 +89,7 @@ describe('fetchrPlugin', function () {
             });
             describe('delete', function () {
                 it('should call the service\'s delete method', function (done) {
-                    actionContext.service['delete']('test', {}, function (err, result) {
+                    actionContext.service['delete']('test', {}, null, function (err, result) {
                         expect(result).to.equal('delete');
                         expect(actionContext.getServiceMeta()).to.be.empty;
                         done();
@@ -169,9 +169,12 @@ describe('fetchrPlugin', function () {
 
                 expect(actionContext.service.constructGetXhrUri(
                     'resourceFoo',
-                    {a: 1},
+                    {
+                        query: {a: 1},
+                        paths: ['a', 'b']
+                    },
                     {cors: true}
-                )).to.equal('http://example.com/resourceFoo;a=1?device=tablet', 'default construct uri function');
+                )).to.equal('http://example.com/resourceFoo/a/b?a=1&device=tablet', 'default construct uri function');
             });
         });
 
@@ -188,14 +191,17 @@ describe('fetchrPlugin', function () {
 
                 expect(actionContext.service.constructGetXhrUri(
                     'resourceFoo',
-                    {a: 1}
-                )).to.equal('custom2/api/resourceFoo;a=1?device=tablet', 'default construct uri function');
+                    {
+                        query: {a: 1},
+                        paths: ['a', 'b'],
+                    }
+                )).to.equal('custom2/api/resourceFoo/a/b?a=1&device=tablet', 'default construct uri function');
 
                 expect(actionContext.service.constructGetXhrUri(
                     'resourceFoo',
-                    {a: 1},
+                    { query: {a: 1}},
                     {
-                        constructGetUri: function () {
+                        constructUri: function () {
                             return '/customGetUri';
                         }
                     }

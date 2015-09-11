@@ -17,7 +17,7 @@ module.exports = {
     update: function update(req, resource, params, config, body, callback) {
         callback(null, 'update');
     },
-    'delete': function del(req, resource, params, config, callback) {
+    'delete': function del(req, resource, params, config, body, callback) {
         callback(null, 'delete');
     }
 };
