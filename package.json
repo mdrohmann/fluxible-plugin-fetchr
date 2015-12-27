@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "debug": "^2.0.0",
-    "fetchr": "git@github.com:mdrohmann/fetchr.git"
+    "fetchr": "git+https://git@github.com/mdrohmann/fetchr.git"
   },
   "devDependencies": {
     "chai": "^2.0.0",
